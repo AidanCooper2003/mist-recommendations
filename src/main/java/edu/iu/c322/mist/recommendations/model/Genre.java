@@ -3,11 +3,13 @@ package edu.iu.c322.mist.recommendations.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Genre {
+public class Genre implements Iterable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
@@ -33,6 +35,11 @@ public class Genre {
 
     public void setGames(List<Game> games) {
         this.games = games;
+    }
+
+    @Override
+    public Iterator<Game> iterator() {
+        return games.iterator();
     }
 
     @Override
